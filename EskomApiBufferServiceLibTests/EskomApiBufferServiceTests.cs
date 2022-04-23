@@ -115,5 +115,30 @@ namespace EskomApiBufferServiceLibTests
             // Assert
             Assert.True(bufferService.StatusesLogged > 1);
         }
+
+        [Fact]
+        public async void BufferServiceCleansUpStatusLogs()
+        {
+            // Arrange
+            MockEskomApiWrapper eskomApiWrapper = new MockEskomApiWrapper();
+            eskomApiWrapper.Delay = 100;
+            eskomApiWrapper.GetStatusResponse = "3";
+
+            BufferService bufferService = new BufferService(null, eskomApiWrapper);
+            bufferService.DelayInMinutes = 0;
+            bufferService.MaxLogs = 20;
+
+            // Act
+            bufferService.Start();
+
+            do
+            {
+                await Task.Delay(100);
+            } while (bufferService.StatusesLogged < 20);
+            await Task.Delay(300);
+
+            // Assert
+            Assert.InRange(bufferService.StatusesLogged, 10, 20);
+        }
     }
 }
