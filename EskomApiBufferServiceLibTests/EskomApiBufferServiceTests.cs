@@ -17,7 +17,7 @@ namespace EskomApiBufferServiceLibTests
             eskomApiWrapper.Delay = 500;
             eskomApiWrapper.GetStatusResponse = "3";
 
-            BufferService bufferService = new BufferService(null, eskomApiWrapper);
+            EskomBufferService bufferService = new EskomBufferService(null, eskomApiWrapper);
             bufferService.DelayInMinutes = 0;
 
             // Act
@@ -38,7 +38,7 @@ namespace EskomApiBufferServiceLibTests
             eskomApiWrapper.Delay = 500;
             eskomApiWrapper.GetStatusResponse = "3";
 
-            BufferService bufferService = new BufferService(null, eskomApiWrapper);
+            EskomBufferService bufferService = new EskomBufferService(null, eskomApiWrapper);
             bufferService.DelayInMinutes = 0;
 
             // Act
@@ -57,7 +57,7 @@ namespace EskomApiBufferServiceLibTests
             eskomApiWrapper.Delay = 500;
             eskomApiWrapper.GetStatusResponse = String.Empty;
 
-            BufferService bufferService = new BufferService(null, eskomApiWrapper);
+            EskomBufferService bufferService = new EskomBufferService(null, eskomApiWrapper);
             bufferService.DelayInMinutes = 0;
 
             // Act
@@ -77,7 +77,7 @@ namespace EskomApiBufferServiceLibTests
             eskomApiWrapper.GetStatusResponse = "3";
             eskomApiWrapper.ThrowWebException = true;
 
-            BufferService bufferService = new BufferService(null, eskomApiWrapper);
+            EskomBufferService bufferService = new EskomBufferService(null, eskomApiWrapper);
             bufferService.DelayInMinutes = 0;
 
             // Act
@@ -98,7 +98,7 @@ namespace EskomApiBufferServiceLibTests
             eskomApiWrapper.Delay = 500;
             eskomApiWrapper.GetStatusResponse = "3";
 
-            BufferService bufferService = new BufferService(null, eskomApiWrapper);
+            EskomBufferService bufferService = new EskomBufferService(null, eskomApiWrapper);
             bufferService.DelayInMinutes = 0;
 
             // Act
@@ -124,7 +124,7 @@ namespace EskomApiBufferServiceLibTests
             eskomApiWrapper.Delay = 100;
             eskomApiWrapper.GetStatusResponse = "3";
 
-            BufferService bufferService = new BufferService(null, eskomApiWrapper);
+            EskomBufferService bufferService = new EskomBufferService(null, eskomApiWrapper);
             bufferService.DelayInMinutes = 0;
             bufferService.MaxLogs = 20;
 

@@ -12,6 +12,16 @@ namespace EskomApiBufferService
         public bool ThrowWebException { get; set; } = false;
         public bool ThrowContinuousWebExceptions { get; set; } = false;
 
+        public MockEskomApiWrapper() { }
+
+        public MockEskomApiWrapper(MockEskomApiWrapperConfiguration configuration)
+        {
+            GetStatusResponse = configuration.GetStatusResponse;
+            Delay = configuration.Delay;
+            ThrowWebException = configuration.ThrowWebException;
+            ThrowContinuousWebExceptions = configuration.ThrowContinuousWebExceptions;
+        }
+
         public async Task<string> GetStatusAsync()
         {
             return await Task.Run(async () =>

@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EskomApiBufferService", "EskomApiBufferService\EskomApiBufferService.csproj", "{DBA9B626-8EB8-443D-BE42-3058F99ACBCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EskomApiBufferService", "EskomApiBufferService\EskomApiBufferService.csproj", "{DBA9B626-8EB8-443D-BE42-3058F99ACBCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EskomApiBufferServiceLibTests", "EskomApiBufferServiceLibTests\EskomApiBufferServiceLibTests.csproj", "{2A17CC0A-9AD7-4E70-A69F-F152B1357AD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EskomApiBufferServiceLibTests", "EskomApiBufferServiceLibTests\EskomApiBufferServiceLibTests.csproj", "{2A17CC0A-9AD7-4E70-A69F-F152B1357AD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EskomApiBufferServer", "EskomApiBufferServer\EskomApiBufferServer.csproj", "{13D0D140-AA0D-4818-99A8-EE8C1AA59912}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{2A17CC0A-9AD7-4E70-A69F-F152B1357AD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A17CC0A-9AD7-4E70-A69F-F152B1357AD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A17CC0A-9AD7-4E70-A69F-F152B1357AD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13D0D140-AA0D-4818-99A8-EE8C1AA59912}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13D0D140-AA0D-4818-99A8-EE8C1AA59912}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13D0D140-AA0D-4818-99A8-EE8C1AA59912}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13D0D140-AA0D-4818-99A8-EE8C1AA59912}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace EskomApiBufferService
 {
-    public class BufferService
+    public class EskomBufferService
     {
         private readonly ILogger _logger;
         private IEskomApiWrapper _eskomApiWrapper = null;
@@ -33,7 +33,8 @@ namespace EskomApiBufferService
         }
         public Status[] Statuses { get => _statusLogs.ToArray(); }
 
-        public BufferService(ILogger<BufferService> logger, IEskomApiWrapper eskomApiWrapper)
+
+        public EskomBufferService(ILogger<EskomBufferService> logger, IEskomApiWrapper eskomApiWrapper)
         {
             if (eskomApiWrapper == null) { throw new ArgumentNullException(nameof(eskomApiWrapper)); }
 
@@ -41,19 +42,35 @@ namespace EskomApiBufferService
             _eskomApiWrapper = eskomApiWrapper;
         }
 
+        public EskomBufferService(ILogger<EskomBufferService> logger, EskomBufferServiceConfiguration configuration)
+        {
+            if (configuration.EskomApiWrapper == null) { throw new ArgumentNullException(nameof(configuration.EskomApiWrapper)); }
+
+            _logger = logger;
+            _eskomApiWrapper = configuration.EskomApiWrapper;
+
+            Retries = configuration.Retries;
+            StatusMinRange = configuration.StatusMinRange;
+            StatusMaxRange = configuration.StatusMaxRange;
+            DelayInMinutes = configuration.DelayInMinutes;
+            MaxLogs = configuration.MaxLogs;
+        }
+
+
         public void Start()
         {
+            _logger.LogInformation("EskomBufferService started.");
             Task.Run(async () =>
             {
                 try
                 {
                     do
                     {
-                        await Task.Delay(DelayInMinutes * 60 * 1000);
-
                         await GetStatusUpdate(_cancellationTokenSource.Token);
 
                         cleanUpStatusLogs();
+
+                        await Task.Delay(DelayInMinutes * 60 * 1000);
                     } while (!_cancellationTokenSource.Token.IsCancellationRequested);
                 }
                 catch (Exception ex)
@@ -67,10 +84,12 @@ namespace EskomApiBufferService
         public void Stop()
         {
             _cancellationTokenSource.Cancel();
+            _logger.LogInformation("EskomBufferService stopped.");
         }
 
         public async Task StartAsync()
         {
+            _logger.LogInformation("EskomBufferService started.");
             await Task.Run(async () =>
             {
                 do
@@ -93,11 +112,13 @@ namespace EskomApiBufferService
 
                 try
                 {
+                    _logger.LogDebug("Fetching status update.");
                     string response = await _eskomApiWrapper.GetStatusAsync();
                     if (IsValidStatusResponse(response))
                     {
                         Status status = new Status(response);
                         _statusLogs.Push(status);
+                        _logger.LogDebug("Status update received.");
                         break;
                     }
                     else
