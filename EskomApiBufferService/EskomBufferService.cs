@@ -18,7 +18,7 @@ namespace EskomApiBufferService
 
         public int Retries { get; set; } = 3;
         public int StatusMinRange { get; set; } = 0;
-        public int StatusMaxRange { get; set; } = 6;
+        public int StatusMaxRange { get; set; } = 10;
         public int DelayInMinutes { get; set; } = 1;
         public int StatusesLogged { get => _statusLogs.Count; }
         public int MaxLogs { get; set; } = 1000;
@@ -114,9 +114,12 @@ namespace EskomApiBufferService
                 {
                     _logger.LogDebug("Fetching status update.");
                     string response = await _eskomApiWrapper.GetStatusAsync();
-                    if (IsValidStatusResponse(response))
+
+                    int intResponse = -1;
+
+                    if (Int32.TryParse(response, out intResponse) && IsValidStatusResponse(intResponse))
                     {
-                        Status status = new Status(response);
+                        Status status = new Status(intResponse);
                         _statusLogs.Push(status);
                         _logger.LogDebug("Status update received.");
                         break;
@@ -144,15 +147,14 @@ namespace EskomApiBufferService
             }
         }
 
-        private bool IsValidStatusResponse(string response)
+        private bool IsValidStatusResponse(int intResponse)
         {
-            int intValue = 0;
-            if (!Int32.TryParse(response, out intValue))
+            if (intResponse == -1)
             {
                 return false;
             }
 
-            if (intValue < StatusMinRange || intValue > StatusMaxRange)
+            if (intResponse < StatusMinRange || intResponse > StatusMaxRange)
             {
                 return false;
             }

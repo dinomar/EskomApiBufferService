@@ -19,12 +19,36 @@ namespace EskomApiBufferServer.Controllers
         }
 
         [HttpGet]
-        public string GetStatus()
+        public JsonResult GetStatus() // -1 = error or not avaliable.
         {
-            return _bufferService?.MostRecentStatus?.Level ?? string.Empty;
+            _logger.LogInformation($"[GetStatus] api call from {HttpContext.Connection.RemoteIpAddress}");
+
+            Status status = _bufferService?.MostRecentStatus;
+            return new JsonResult((status != null) ? status.Level : -1);
         }
 
-        // GetStatusLog
-        // GetAllStatusLogs
+        [HttpGet]
+        public JsonResult GetStatusLog()
+        {
+            _logger.LogInformation($"[GetStatusLog] api call from {HttpContext.Connection.RemoteIpAddress}");
+
+            Status status = _bufferService.MostRecentStatus;
+            if (status != null)
+            {
+                return new JsonResult(status);
+            }
+            else
+            {
+                return new JsonResult(new { });
+            }
+        }
+
+        public JsonResult GetAllStatusLogs()
+        {
+            _logger.LogInformation($"[GetAllStatusLogs] api call from {HttpContext.Connection.RemoteIpAddress}");
+
+            Status[] statuses = _bufferService.Statuses;
+            return new JsonResult(statuses);
+        }
     }
 }

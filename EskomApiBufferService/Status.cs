@@ -6,10 +6,10 @@ namespace EskomApiBufferService
 {
     public class Status
     {
-        public string Level { get; private set; }
+        public int Level { get; private set; }
         public DateTime Updated { get; private set; }
 
-        public Status(string level)
+        public Status(int level)
         {
             Level = level;
             Updated = DateTime.Now;
