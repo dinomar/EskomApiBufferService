@@ -84,12 +84,12 @@ namespace EskomApiBufferService
         public void Stop()
         {
             _cancellationTokenSource.Cancel();
-            _logger.LogInformation("EskomBufferService stopped.");
+            _logger?.LogInformation("EskomBufferService stopped.");
         }
 
         public async Task StartAsync()
         {
-            _logger.LogInformation("EskomBufferService started.");
+            _logger?.LogInformation("EskomBufferService started.");
             await Task.Run(async () =>
             {
                 do
@@ -112,7 +112,7 @@ namespace EskomApiBufferService
 
                 try
                 {
-                    _logger.LogDebug("Fetching status update.");
+                    _logger?.LogDebug("Fetching status update.");
                     string response = await _eskomApiWrapper.GetStatusAsync();
 
                     int intResponse = -1;
@@ -121,7 +121,7 @@ namespace EskomApiBufferService
                     {
                         Status status = new Status(intResponse);
                         _statusLogs.Push(status);
-                        _logger.LogDebug("Status update received.");
+                        _logger?.LogDebug("Status update received.");
                         break;
                     }
                     else
@@ -139,8 +139,8 @@ namespace EskomApiBufferService
 
         private void cleanUpStatusLogs()
         {
-            // TODO log
-            if (StatusesLogged > MaxLogs)
+            _logger?.LogInformation("Cleaning up status logs.");
+            if (StatusesLogged > MaxLogs && StatusesLogged > 10)
             {
                 Status[] temp = _statusLogs.ToArray().Take(10).Reverse().ToArray();
                 _statusLogs.Clear();
