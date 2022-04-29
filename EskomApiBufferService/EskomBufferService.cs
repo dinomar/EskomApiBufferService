@@ -139,6 +139,7 @@ namespace EskomApiBufferService
 
         private void cleanUpStatusLogs()
         {
+            // TODO log
             if (StatusesLogged > MaxLogs)
             {
                 Status[] temp = _statusLogs.ToArray().Take(10).Reverse().ToArray();
