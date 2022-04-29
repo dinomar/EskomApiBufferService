@@ -33,16 +33,11 @@ namespace EskomApiBufferServer.Controllers
             _logger.LogInformation($"[GetStatusLog] api call from {HttpContext.Connection.RemoteIpAddress}");
 
             Status status = _bufferService.MostRecentStatus;
-            if (status != null)
-            {
-                return new JsonResult(status);
-            }
-            else
-            {
-                return new JsonResult(new { });
-            }
+
+            return (status != null) ? new JsonResult(status) : new JsonResult(new { });
         }
 
+        [HttpGet]
         public JsonResult GetAllStatusLogs()
         {
             _logger.LogInformation($"[GetAllStatusLogs] api call from {HttpContext.Connection.RemoteIpAddress}");
@@ -50,5 +45,16 @@ namespace EskomApiBufferServer.Controllers
             Status[] statuses = _bufferService.Statuses;
             return new JsonResult(statuses);
         }
+
+        [HttpGet]
+        public JsonResult GetLastUpdateTime()
+        {
+            _logger.LogInformation($"[GetLastUpdateTime] api call from {HttpContext.Connection.RemoteIpAddress}");
+
+            Status status = _bufferService.MostRecentStatus;
+
+            return (status != null) ? new JsonResult(status.Updated) : new JsonResult(new { });
+        }
+
     }
 }
