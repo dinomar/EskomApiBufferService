@@ -21,11 +21,11 @@ functionality and can be run from a Docker container.
 
 Edit `appsettings.json` to configure the service.
 
-`DelayInMinutes - Time between getting a new status update from Eskom's loadsheadding api`  
-`Retries - Number of times this service should try the get a new status update from the Eskom's loadsheadding api`  
-`StatusMinRange - Used for validating a acceptable response from Eskom's loadsheadding api`  
-`StatusMaxRange - Used for validating a acceptable response from Eskom's loadsheadding api`  
-`MaxLogs - Maximum number of statuses to keep cached. The clean up run when this ammount is exceeded`  
+`DelayInMinutes - Time between getting a new status update from Eskom's loadsheadding api.`  
+`Retries - Number of times this service should try the get a new status update from the Eskom's loadsheadding api.`  
+`StatusMinRange - Used for validating a acceptable response from Eskom's loadsheadding api.`  
+`StatusMaxRange - Used for validating a acceptable response from Eskom's loadsheadding api.`  
+`MaxLogs - Maximum number of statuses to keep cached. The clean up run when this ammount is exceeded.`  
 
 ```
 
