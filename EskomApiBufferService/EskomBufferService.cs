@@ -129,9 +129,9 @@ namespace EskomApiBufferService
                         retry++;
                     }
                 }
-                catch (System.Net.WebException ex)
+                catch (System.Net.WebException)
                 {
-                    _logger?.LogError(exception: ex, $"Network Error: Failed to get new eskom status. Retries: '{retry}'.");
+                    _logger?.LogError($"Network Error: Failed to get new Eskom status. Retries: {retry + 1}.");
                     retry++;
                 }
             } while (retry < Retries);
