@@ -4,7 +4,7 @@
 
 Unfortunately Eskom's load shedding api is very unpredictable, and not always available when it is under significant load. This project aim's to remedy this problem by placing a buffer between Eskom api service and the applications using the api.
 
-The can be used as a drop in replacement for Eskom's api by simply pointing a application to this api service instead of the Eskom api. It also has some extra
+This can be used as a drop in replacement for Eskom's api by simply pointing a application to this api service instead of the Eskom api. It also has some extra
 functionality and can be run from a Docker container.
 
 ### Download and run:
