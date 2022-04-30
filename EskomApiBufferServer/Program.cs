@@ -21,11 +21,14 @@ namespace EskomApiBufferServer
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                }).ConfigureLogging(logging =>
+                }).ConfigureLogging((hostingContext, logging) =>
                 {
+                    var configuration = hostingContext.Configuration.GetSection("Logging");
+
                     logging.ClearProviders();
                     logging.AddConsole();
                     logging.AddDebug();
+                    logging.AddFile(configuration);
                 });
     }
 }

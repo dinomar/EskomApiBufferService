@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Serilog.Extensions.Logging;
 
 namespace EskomApiBufferServer
 {
@@ -26,6 +27,11 @@ namespace EskomApiBufferServer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddLogging(config => {
+            //    // addConsole
+            //    config.AddFile(Configuration.GetSection("Logging"));
+            //});
+
             int EskomBufferServiceRetries;
             int EskomBufferServiceStatusMinRange;
             int EskomBufferServiceStatusMaxRange;
@@ -36,7 +42,7 @@ namespace EskomApiBufferServer
                 new EskomBufferService(sp.GetRequiredService<ILogger<EskomBufferService>>(),
                 new EskomBufferServiceConfiguration
                 {
-                    EskomApiWrapper = new MockEskomApiWrapper(new MockEskomApiWrapperConfiguration
+                    EskomApiWrapper = new MockEskomApiWrapper(new MockEskomApiWrapperConfiguration // TODO: remove
                     {
                         Delay = 1000,
                         GetStatusResponse = "2",
