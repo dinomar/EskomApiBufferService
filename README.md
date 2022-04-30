@@ -9,7 +9,7 @@ functionality and can be run from a Docker container.
 
 ### Download and run:
 
-`download the latest release here`
+`download the latest release [here](https://github.com/dinomar/EskomApiBufferService/releases/tag/1.0.0)`
 
 `docker build -t eskombuffer . `
 
