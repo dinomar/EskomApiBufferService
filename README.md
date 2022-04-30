@@ -7,7 +7,7 @@ Unfortunately Eskom's load shedding api is very unpredictable, and not always av
 The can be used as a drop in replacement for Eskom's api by simply pointing a application to this api service instead of the Eskom api. It also has some extra
 functionality and can be run from a Docker container.
 
-### Download and run
+### Download and run:
 
 `download the latest release here`
 
@@ -17,7 +17,7 @@ functionality and can be run from a Docker container.
 
 `http://localhost:8080/api/eskom/getstatus`
 
-### Configuration
+### Configuration:
 
 Edit `appsettings.json` to configure the service.
 
@@ -38,7 +38,7 @@ Edit `appsettings.json` to configure the service.
 }
 ```
 
-### Endpoints
+### Endpoints:
 
 #### [GET] api/eskom/GetStatus  
 ```
