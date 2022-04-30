@@ -139,9 +139,10 @@ namespace EskomApiBufferService
 
         private void cleanUpStatusLogs()
         {
-            _logger?.LogInformation("Cleaning up status logs.");
             if (StatusesLogged > MaxLogs && StatusesLogged > 10)
             {
+                _logger?.LogInformation("Cleaning up status logs.");
+
                 Status[] temp = _statusLogs.ToArray().Take(10).Reverse().ToArray();
                 _statusLogs.Clear();
                 _statusLogs.PushRange(temp);

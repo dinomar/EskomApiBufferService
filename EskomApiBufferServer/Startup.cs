@@ -27,11 +27,6 @@ namespace EskomApiBufferServer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddLogging(config => {
-            //    // addConsole
-            //    config.AddFile(Configuration.GetSection("Logging"));
-            //});
-
             int EskomBufferServiceRetries;
             int EskomBufferServiceStatusMinRange;
             int EskomBufferServiceStatusMaxRange;
@@ -42,11 +37,7 @@ namespace EskomApiBufferServer
                 new EskomBufferService(sp.GetRequiredService<ILogger<EskomBufferService>>(),
                 new EskomBufferServiceConfiguration
                 {
-                    EskomApiWrapper = new MockEskomApiWrapper(new MockEskomApiWrapperConfiguration // TODO: remove
-                    {
-                        Delay = 1000,
-                        GetStatusResponse = "2",
-                    }),
+                    EskomApiWrapper = new EskomApiWrapper(),
                     Retries = (Int32.TryParse(Configuration["EskomBufferService:Retries"]?.ToString(), out EskomBufferServiceRetries) ? EskomBufferServiceRetries : 3),
                     StatusMinRange = (Int32.TryParse(Configuration["EskomBufferService:StatusMinRange"]?.ToString(), out EskomBufferServiceStatusMinRange) ? EskomBufferServiceStatusMinRange : 0),
                     StatusMaxRange = (Int32.TryParse(Configuration["EskomBufferService:StatusMaxRange"]?.ToString(), out EskomBufferServiceStatusMaxRange) ? EskomBufferServiceStatusMaxRange : 10),
