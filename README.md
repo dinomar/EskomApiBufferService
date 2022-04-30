@@ -37,3 +37,25 @@ Edit `appsettings.json` to configure the service.
   "MaxLogs": 1000
 }
 ```
+
+### Endpoints
+
+#### [GET] api/eskom/GetStatus  
+```
+2  
+```
+
+#### [GET] api/eskom/GetStatusLog  
+```
+{"level":1,"updated":"2022-05-01T00:44:22.9797845+02:00"}  
+```
+
+#### [GET] api/eskom/GetAllStatusLogs  
+```
+[{"level":1,"updated":"2022-05-01T00:54:23.2562919+02:00"},{"level":1,"updated":"2022-05-01T00:49:23.1071896+02:00"},{"level":1,"updated":"2022-05-01T00:44:22.9797845+02:00"}]  
+```
+
+#### [GET] api/eskom/GetLastUpdateTime  
+```
+{"updated":"2022-05-01T00:44:22.9797845+02:00"}  
+```
