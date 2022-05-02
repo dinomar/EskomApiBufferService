@@ -29,16 +29,7 @@ namespace EskomApiBufferServer
                     webBuilder.UseStartup<Startup>();
                 }).ConfigureLogging((hostingContext, logging) =>
                 {
-                    //var configuration = hostingContext.Configuration.GetSection("Logging");
 
-                    //logging.AddConfiguration(configuration);
-                    //logging.AddSerilog();
-
-                    //logging.ClearProviders();
-                    //logging.AddConsole();
-                    //logging.AddDebug();
-                    //logging.AddFile(configuration);
-                    //logging.AddSerilog();
                 }).UseSerilog((hostingContext, logging) =>
                 {
                     logging.ReadFrom.Configuration(hostingContext.Configuration);
